@@ -6,7 +6,7 @@ const CONDITION_COLORS = {
   new: 'badge-gold', like_new: 'badge-blue', good: 'badge-gold', fair: 'badge-gold', poor: 'badge-red',
 };
 const TYPE_COLORS = { sell: 'badge-gold', donate: 'badge-green', charity: 'badge-purple' };
-const API_URL = 'http://localhost:5001';
+const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : '';
 
 export default function ListingCard({ listing, index = 0 }) {
   const imgSrc = listing.images?.[0]

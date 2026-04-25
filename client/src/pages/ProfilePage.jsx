@@ -11,6 +11,8 @@ const TABS = [
   { id: 'security', label: 'Security', icon: Shield },
 ];
 
+const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : '';
+
 export default function ProfilePage() {
   const { user, updateUser, token, logout } = useAuthStore();
   const [activeTab, setActiveTab] = useState('general');
@@ -111,7 +113,7 @@ export default function ProfilePage() {
             <div className="relative group">
               <div className="w-40 h-40 rounded-full border-4 border-primary-500/20 overflow-hidden bg-dark-800 shadow-gold group-hover:border-primary-500 transition-colors duration-500">
                 {user?.avatar ? (
-                  <img src={user.avatar.startsWith('http') ? user.avatar : `http://localhost:5001${user.avatar}`} className="w-full h-full object-cover" />
+                  <img src={user.avatar.startsWith('http') ? user.avatar : `${API_URL}${user.avatar}`} className="w-full h-full object-cover" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-display font-bold text-primary-500">
                     {user?.name?.charAt(0)}

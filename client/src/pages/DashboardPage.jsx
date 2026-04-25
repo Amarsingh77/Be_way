@@ -8,6 +8,8 @@ import ListingCard from '../components/ListingCard';
 import useAuthStore from '../store/authStore';
 import api from '../utils/api';
 
+const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : '';
+
 const TABS = [
   { id: 'listings', label: 'Collection', icon: Package },
   { id: 'orders', label: 'Acquisitions', icon: ShoppingBag },
@@ -204,7 +206,7 @@ export default function DashboardPage() {
                   ) : orders.map(o => (
                     <div key={o._id} className="glass-card flex flex-col md:flex-row items-center gap-8 p-8 border-white/[0.02] group hover:border-primary-500/20 transition-all duration-700">
                       <div className="w-32 h-32 rounded-2xl overflow-hidden bg-dark-800 shrink-0 shadow-lg grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700">
-                        {o.listing?.images?.[0] && <img src={o.listing.images[0].startsWith('http') ? o.listing.images[0] : `http://localhost:5001${o.listing.images[0]}`} className="w-full h-full object-cover" />}
+                        {o.listing?.images?.[0] && <img src={o.listing.images[0].startsWith('http') ? o.listing.images[0] : `${API_URL}${o.listing.images[0]}`} className="w-full h-full object-cover" />}
                       </div>
                       <div className="flex-1 text-center md:text-left space-y-2">
                         <p className="text-[10px] uppercase tracking-widest font-bold text-gray-500">Order ID: #{o._id.slice(-6)}</p>

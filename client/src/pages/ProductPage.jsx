@@ -8,7 +8,7 @@ import AIPriceBadge from '../components/AIPriceBadge';
 import api from '../utils/api';
 import useAuthStore from '../store/authStore';
 
-const API_URL = 'http://localhost:5001';
+const API_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : '';
 const CONDITION_LABELS = {
   new: 'Pristine Heritage',
   like_new: 'Excellent Selection',

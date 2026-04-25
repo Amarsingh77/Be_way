@@ -100,6 +100,17 @@ export default function ProfilePage() {
     } finally {
       setSaving(false);
     }
+  const handleDeleteAccount = async () => {
+    if (!window.confirm('WARNING: Are you absolutely sure you want to permanently delete your account? This action cannot be undone and will erase your philosophy impact points!')) return;
+    setSaving(true);
+    try {
+      await api.delete('/auth/profile');
+      toast.success('Account permanently deleted from BeWay');
+      logout();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to delete account');
+      setSaving(false);
+    }
   };
 
   return (
@@ -326,6 +337,21 @@ export default function ProfilePage() {
                         </button>
                       </div>
                     </form>
+
+                    <div className="mt-16 pt-10 border-t border-red-500/10">
+                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                        <div className="space-y-2">
+                          <h3 className="text-xl font-display font-bold text-red-500">Danger Zone</h3>
+                          <p className="text-sm text-gray-500">Permanently remove your account and erase your sustainability score from the BeWay platform. This action is irreversible.</p>
+                        </div>
+                        <button 
+                          onClick={handleDeleteAccount}
+                          disabled={saving}
+                          className="px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs border border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300">
+                          Delete Account
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               )}

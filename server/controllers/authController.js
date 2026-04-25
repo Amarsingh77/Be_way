@@ -94,3 +94,15 @@ exports.saveListing = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// @DELETE /api/auth/profile
+exports.deleteAccount = async (req, res) => {
+  try {
+    // Optionally delete user's listings/donations here if needed, 
+    // but for basic deletion just delete the user document
+    await User.findByIdAndDelete(req.user._id);
+    res.json({ message: 'Account permanently deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

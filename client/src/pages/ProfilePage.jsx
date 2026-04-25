@@ -100,6 +100,8 @@ export default function ProfilePage() {
     } finally {
       setSaving(false);
     }
+  };
+
   const handleDeleteAccount = async () => {
     if (!window.confirm('WARNING: Are you absolutely sure you want to permanently delete your account? This action cannot be undone and will erase your philosophy impact points!')) return;
     setSaving(true);

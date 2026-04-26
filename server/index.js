@@ -24,6 +24,14 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+// Interceptor for displaying connection errors beautifully on frontend
+app.use((req, res, next) => {
+  if (global.dbError) {
+    return res.status(500).json({ message: `SERVER BOOT ERROR: Database connection failed. Details: ${global.dbError}. Please check Vercel Env Vars and MongoDB IP Whitelist.` });
+  }
+  next();
+});
+
 // Rate Limiting
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 200 });
 app.use('/api', limiter);

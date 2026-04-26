@@ -2,20 +2,6 @@
 
 This document provides a comprehensive overview of the technology stack, design philosophy, and functional modules implemented in the **BeWay** circular luxury fashion platform.
 
-## 🚀 Quick Tech Stack Overview
-At a glance, BeWay is built using the **MERN-like** stack:
-- **Frontend**: React (Vite), Tailwind CSS, Framer Motion
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (Mongoose)
-- **AI/ML Integration**: TensorFlow.js
-
-## 📋 Prerequisites
-Before running or developing the project locally, ensure your system has the following:
-- **Node.js** (v18.x or higher)
-- **npm** (Node Package Manager) or **yarn**
-- **MongoDB** (installed locally or an accessible MongoDB Atlas string)
-- **Git** (for version control)
-
 ---
 
 ## 🏗 Core Technology Stack
